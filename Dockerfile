@@ -15,21 +15,8 @@ RUN apt-get update && apt-get install -y curl
 
 RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba && mv bin/micromamba /usr/bin/
 RUN micromamba install -y -c conda-forge scikit-misc scvi-tools
-
-#RUN pip install scikit-learn
-#RUN pip install scvi-tools[cuda]
-
-RUN apt-get install -y passwd
-
-# Set user.
-RUN useradd -ms /bin/bash user
-USER user
-
-# Include some aliases.
 RUN alias ll='ls -l'
 RUN alias l='ls'
 RUN alias xx='exit'
-
-WORKDIR /home/user
 
 CMD ["/bin/bash"]
