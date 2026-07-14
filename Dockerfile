@@ -20,5 +20,5 @@ RUN alias l='ls'
 RUN alias xx='exit'
 
 RUN micromamba shell init --shell bash
-
+RUN echo "micromamba activate scvi-tools" >> ~/.bashrc
 CMD ["/bin/bash"]
