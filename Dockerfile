@@ -19,4 +19,7 @@ RUN alias ll='ls -l'
 RUN alias l='ls'
 RUN alias xx='exit'
 
+RUN eval "$(micromamba shell hook --shell bash)"
+RUN micromamba activate scvi-tools
+
 CMD ["/bin/bash"]
