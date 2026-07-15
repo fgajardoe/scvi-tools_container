@@ -17,4 +17,7 @@ RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bi
 ENV MAMBA_ROOT_PREFIX=/opt/micromamba
 RUN micromamba create -y -n scvi-tools -c conda-forge scikit-misc scvi-tools
 
-ENTRYPOINT ["micromamba", "run", "-n", "scvi-tools", "python"]
+ENV PATH="/opt/micromamba/envs/scvi-tools/bin:$PATH"
+
+ENTRYPOINT ["/bin/bash"]
+#ENTRYPOINT ["micromamba", "run", "-n", "scvi-tools", "python"]
