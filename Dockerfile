@@ -19,7 +19,6 @@ RUN alias ll='ls -l'
 RUN alias l='ls'
 RUN alias xx='exit'
 
-#RUN micromamba shell init --shell bash
-RUN echo "eval \"$(micromamba shell hook --shell bash)\"" >> ~/.bashrc
-RUN echo "micromamba activate scvi-tools" >> ~/.bashrc
-CMD ["/bin/bash"]
+RUN micromamba shell init --shell bash
+RUN micromamba activate scvi-tools
+ENTRYPOINT ["python"]
