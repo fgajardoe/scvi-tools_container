@@ -15,10 +15,5 @@ RUN apt-get update && apt-get install -y curl
 
 RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba && mv bin/micromamba /usr/bin/
 RUN micromamba create -y -n scvi-tools -c conda-forge scikit-misc scvi-tools
-RUN alias ll='ls -l'
-RUN alias l='ls'
-RUN alias xx='exit'
 
-RUN micromamba shell init --shell bash
-RUN micromamba activate scvi-tools
-ENTRYPOINT ["python"]
+ENTRYPOINT ["micromamba", "run", "-n", "scvi-tools", "python"]
