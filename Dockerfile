@@ -14,6 +14,7 @@ RUN echo 'tzdata tzdata/Areas select America' | debconf-set-selections && \
 RUN apt-get update && apt-get install -y curl
 
 RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba && mv bin/micromamba /usr/bin/
+ENV MAMBA_ROOT_PREFIX=/opt/micromamba
 RUN micromamba create -y -n scvi-tools -c conda-forge scikit-misc scvi-tools
 
 ENTRYPOINT ["micromamba", "run", "-n", "scvi-tools", "python"]
