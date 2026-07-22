@@ -32,7 +32,7 @@ RUN micromamba create -y \
     -c nvidia \
     python=3.12 \
     pytorch \
-    pytorch-cuda=13.0 \
+    pytorch-cuda \
     scvi-tools \
     scikit-misc
 
