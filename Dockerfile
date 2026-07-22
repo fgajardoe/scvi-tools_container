@@ -25,8 +25,9 @@ RUN apt-get update && apt-get install -y \
 RUN python -m pip install --upgrade pip
 
 RUN python -m pip install \
-    scvi-tools \
-    scanpy \
+    rich==13.9.4 \
+    scvi-tools==1.4.2 \
+    scanpy==1.11.5 \
     scikit-misc
 
 ENTRYPOINT ["/bin/bash"]
