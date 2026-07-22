@@ -12,6 +12,14 @@ RUN apt-get update && apt-get install -y \
     curl \
     bash \
     build-essential \
+    procps \
+    coreutils \
+    findutils \
+    grep \
+    sed \
+    gawk \
+    gzip \
+    tar \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python -m pip install --upgrade pip
