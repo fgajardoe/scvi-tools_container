@@ -19,11 +19,22 @@ RUN apt-get update && apt-get install -y curl \
     sed \
     gawk \
     gzip \
-    tar
+    tar && rm -rf /var/lib/apt/lists/*
 
 RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba && mv bin/micromamba /usr/bin/
 ENV MAMBA_ROOT_PREFIX=/opt/micromamba
-RUN micromamba create -y -n scvi-tools -c conda-forge scikit-misc scvi-tools
+#RUN micromamba create -y -n scvi-tools -c conda-forge scikit-misc scvi-tools
+
+RUN micromamba create -y \
+    -n scvi-tools \
+    -c conda-forge \
+    -c pytorch \
+    -c nvidia \
+    python=3.12 \
+    pytorch \
+    pytorch-cuda=13.0 \
+    scvi-tools \
+    scikit-misc
 
 # Set up the environment.
 ENV PATH="/opt/micromamba/envs/scvi-tools/bin:$PATH"
