@@ -8,34 +8,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN echo 'tzdata tzdata/Areas select America' | debconf-set-selections && \
     echo 'tzdata tzdata/Zones/America select Mexico_City' | debconf-set-selections
 
-
-# Install software.
-RUN apt-get update && apt-get install -y curl \
+RUN apt-get update && apt-get install -y \
+    curl \
     bash \
-    procps \
-    coreutils \
-    findutils \
-    grep \
-    sed \
-    gawk \
-    gzip \
-    tar && rm -rf /var/lib/apt/lists/*
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba && mv bin/micromamba /usr/bin/
-ENV MAMBA_ROOT_PREFIX=/opt/micromamba
-#RUN micromamba create -y -n scvi-tools -c conda-forge scikit-misc scvi-tools
+RUN python -m pip install --upgrade pip
 
-RUN micromamba create -y \
-    -n scvi-tools \
-    -c conda-forge \
-    -c pytorch \
-    -c nvidia \
-    python=3.12 \
-    pytorch \
-    pytorch-cuda \
+RUN python -m pip install \
     scvi-tools \
+    scanpy \
     scikit-misc
 
-# Set up the environment.
-ENV PATH="/opt/micromamba/envs/scvi-tools/bin:$PATH"
 ENTRYPOINT ["/bin/bash"]
