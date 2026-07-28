@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     gawk \
     gzip \
     tar \
+    which \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python -m pip install --upgrade pip
