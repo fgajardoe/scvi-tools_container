@@ -1,4 +1,7 @@
-FROM dhi.io/pytorch:2.11-cuda13.0-cudnn9-debian-dev
+#FROM dhi.io/pytorch:2.11-cuda13.0-cudnn9-debian-dev
+FROM pytorch/pytorch:2.4.1-cuda12.4-cudnn9-runtime
+
+
 LABEL maintainer Felipe Gajardo <fgajardoe@gmail.com>
 
 # Evitar la interacción durante la instalación
